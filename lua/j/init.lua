@@ -38,6 +38,12 @@ require("lazy").setup({
 	{ "catppuccin/nvim", name = "catppuccin", lazy=false, priority = 1000, config = function()
 		print("catppuccin config()")
 	end},
+	{"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
+	{
+		"ThePrimeagen/harpoon",
+		branch = "harpoon2",
+		dependencies = { "nvim-lua/plenary.nvim" }
+	},
 	{
 		"LazyVim/LazyVim",
 		opts = {
