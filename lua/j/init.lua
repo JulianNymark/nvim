@@ -3,6 +3,7 @@ print("hello from j/init.lua")
 
 vim.wo.relativenumber = true
 vim.wo.number = true
+vim.opt.scrolloff = 10
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -44,6 +45,7 @@ require("lazy").setup({
 		branch = "harpoon2",
 		dependencies = { "nvim-lua/plenary.nvim" }
 	},
+	{"ThePrimeagen/vim-be-good"},
 	{
 		"LazyVim/LazyVim",
 		opts = {
