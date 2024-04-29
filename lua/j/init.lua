@@ -142,6 +142,18 @@ require("lazy").setup({
 		"nvim-telescope/telescope.nvim",
 		event = "VimEnter",
 		branch = "0.1.x",
+		opts = {
+			defaults = {
+				layout_strategy = "horizontal",
+				layout_config = {
+					horizontal = {
+						prompt_position = "top",
+						width = 0.9,
+					},
+				},
+				sorting_strategy = "ascending",
+			},
+		},
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			{ -- If encountering errors, see telescope-fzf-native README for installation instructions
