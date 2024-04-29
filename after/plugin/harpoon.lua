@@ -1,4 +1,3 @@
-print("hello from harpoon.lua")
 local harpoon = require("harpoon")
 harpoon:setup()
 
