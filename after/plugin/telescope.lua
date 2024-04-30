@@ -39,9 +39,9 @@ vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iag
 vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
 vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
 vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
--- vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "[S]earch [F]iles" })
+vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "[S]earch [F]iles" })
 
-vim.keymap.set("n", "<space>sf", function()
+vim.keymap.set("n", "<leader>s<leader>", function()
 	require("telescope").extensions.file_browser.file_browser()
 end, { desc = "[S]earch [F]iles" })
 vim.keymap.set("n", "<C-p>", builtin.git_files, {})
