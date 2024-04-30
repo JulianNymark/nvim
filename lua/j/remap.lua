@@ -41,3 +41,6 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz", { remap = false })
 vim.api.nvim_create_user_command("JsonF", function()
 	vim.cmd("%!jq .")
 end, { nargs = 0 })
+
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
