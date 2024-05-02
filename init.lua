@@ -858,6 +858,14 @@ require("lazy").setup({
 	{
 		"nvim-telescope/telescope-file-browser.nvim",
 		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+		config = function()
+			local fb = require("telescope").extensions.file_browser
+			vim.keymap.set("n", "<Leader>sc", function()
+				fb.file_browser({
+					cwd = vim.fn.expand("%:p:h"),
+				})
+			end)
+		end,
 	},
 	{
 		"ThePrimeagen/vim-be-good",
