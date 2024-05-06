@@ -874,40 +874,6 @@ require("lazy").setup({
 		"nvim-treesitter/nvim-treesitter-context",
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 	},
-	--{
-	--	"dense-analysis/ale",
-	--	config = function()
-	--		-- Configuration goes here.
-	--		local g = vim.g
-
-	--		g.ale_ruby_rubocop_auto_correct_all = 1
-	--		g.ale_sign_column_always = 1
-
-	--					g.ale_linters = {
-	--						ruby = { "rubocop", "ruby" },
-	--						lua = { "lua_language_server" },
-	--						javascript = { "eslint" },
-	--						javascriptreact = { "eslint" },
-	--						typescript = { "tsserver", "eslint" },
-	--						typescriptreact = { "tsserver", "eslint" },
-	--						css = { "stylelint" },
-	--					}
-	--					g.ale_fixers = {
-	--						javascript = { "prettier" },
-	--						javascriptreact = { "prettier" },
-	--						typescript = { "prettier" },
-	--						typescriptreact = { "prettier" },
-	--						css = { "prettier" },
-	--					}
-	--					g.ale_linters_ignore = {
-	--						typescriptreact = { "remove_trailing_lines" },
-	--					}
-	--					g.ale_sign_error = "❌"
-	--					g.ale_sign_warning = "⚠️"
-	--
-	--					g.ale_fix_on_save = 1
-	--	end,
-	--},
 	{
 		"jiaoshijie/undotree",
 		dependencies = "nvim-lua/plenary.nvim",
