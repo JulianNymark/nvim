@@ -28,5 +28,11 @@ vim.api.nvim_create_user_command("JsonF", function()
 	vim.cmd("%!jq .")
 end, { nargs = 0 })
 
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "move selection [K] dir" })
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "move selection [J] dir" })
+vim.keymap.set(
+	"n",
+	"<Leader>l",
+	":let @+ = expand('%') . ':' . line('.')<cr>",
+	{ desc = "Copy file:[L]ine_number to clipboard" }
+)
