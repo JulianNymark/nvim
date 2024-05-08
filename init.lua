@@ -891,6 +891,21 @@ require("lazy").setup({
 			require("nvim-ts-autotag").setup()
 		end,
 	},
+	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		config = function()
+			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+			local cmp = require("cmp")
+			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+			require("nvim-autopairs").setup()
+		end,
+		-- use opts = {} for passing setup options
+		-- this is equalent to setup({}) function
+		dependencies = {
+			"hrsh7th/nvim-cmp",
+		},
+	},
 }, {
 	ui = {
 		-- If you are using a Nerd Font: set icons to an empty table which will use the
