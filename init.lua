@@ -22,8 +22,8 @@ vim.opt.showmode = false
 vim.opt.breakindent = true
 vim.opt.undofile = true
 
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
+-- vim.opt.ignorecase = true
+-- vim.opt.smartcase = true
 
 vim.opt.signcolumn = "yes"
 
@@ -815,6 +815,9 @@ require("lazy").setup({
 				separator = nil,
 				zindex = 20, -- The Z-index of the context window
 				on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
+				autotag = {
+					enable = true,
+				},
 			})
 		end,
 	},
@@ -881,6 +884,12 @@ require("lazy").setup({
 		keys = { -- load the plugin only when using it's keybinding:
 			{ "<leader>u", "<cmd>lua require('undotree').toggle()<cr>" },
 		},
+	},
+	{
+		"windwp/nvim-ts-autotag",
+		config = function()
+			require("nvim-ts-autotag").setup()
+		end,
 	},
 }, {
 	ui = {
