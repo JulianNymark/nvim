@@ -836,31 +836,31 @@ require("lazy").setup({
 
 			vim.keymap.set("n", "<leader>a", function()
 				harpoon:list():add()
-			end)
+			end, { desc = "[A]dd to harpoon list" })
 			vim.keymap.set("n", "<C-e>", function()
 				harpoon.ui:toggle_quick_menu(harpoon:list())
-			end)
+			end, { desc = "[E]xplicate harpoon list" })
 
 			vim.keymap.set("n", "<C-h>", function()
 				harpoon:list():select(1)
-			end)
+			end, { desc = "[h] tns = harpoon [1] 234" })
 			vim.keymap.set("n", "<C-t>", function()
 				harpoon:list():select(2)
-			end)
+			end, { desc = "h [t] ns = harpoon 1 [2] 34" })
 			vim.keymap.set("n", "<C-n>", function()
 				harpoon:list():select(3)
-			end)
+			end, { desc = "ht [n] s = harpoon 12 [3] 4" })
 			vim.keymap.set("n", "<C-s>", function()
 				harpoon:list():select(4)
-			end)
+			end, { desc = "htn [s] = harpoon 123 [4]" })
 
 			-- Toggle previous & next buffers stored within Harpoon list
 			vim.keymap.set("n", "<C-S-P>", function()
 				harpoon:list():prev()
-			end)
+			end, { desc = "[P]revious harpoon buffer" })
 			vim.keymap.set("n", "<C-S-N>", function()
 				harpoon:list():next()
-			end)
+			end, { desc = "[N]ext harpoon buffer" })
 		end,
 	},
 	{
@@ -872,7 +872,7 @@ require("lazy").setup({
 				fb.file_browser({
 					cwd = vim.fn.expand("%:p:h"),
 				})
-			end)
+			end, { desc = "[S]earch [C]urrent directory (browse)" })
 		end,
 	},
 	{
