@@ -266,11 +266,14 @@ require("lazy").setup({
 				--  All the info you're looking for is in `:help telescope.setup()`
 				--
 				defaults = {
-					layout_strategy = "horizontal",
+					layout_strategy = "vertical",
 					layout_config = {
-						horizontal = {
+						vertical = {
+							mirror = true,
 							prompt_position = "top",
 							width = 0.9,
+							height = 0.9,
+							preview_height = 0.6,
 						},
 					},
 					sorting_strategy = "ascending",
@@ -280,7 +283,9 @@ require("lazy").setup({
 				--     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
 				--   },
 				-- },
-				-- pickers = {}
+				pickers = {
+					lsp_references = { fname_width = 100 },
+				},
 				extensions = {
 					["ui-select"] = {
 						require("telescope.themes").get_dropdown(),
