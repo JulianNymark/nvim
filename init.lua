@@ -22,8 +22,8 @@ vim.opt.showmode = false
 vim.opt.breakindent = true
 vim.opt.undofile = true
 
--- vim.opt.ignorecase = true
--- vim.opt.smartcase = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 vim.opt.signcolumn = "yes"
 
@@ -761,7 +761,7 @@ require("lazy").setup({
 			-- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
 			-- - sd'   - [S]urround [D]elete [']quotes
 			-- - sr)'  - [S]urround [R]eplace [)] [']
-			require("mini.surround").setup()
+			-- require("mini.surround").setup() -- USING nvim.surround instead! (has more features)
 
 			-- Simple and easy statusline.
 			--  You could remove this setup call if you don't like it,
@@ -780,6 +780,16 @@ require("lazy").setup({
 
 			-- ... and there is more!
 			--  Check out: https://github.com/echasnovski/mini.nvim
+		end,
+	},
+	{
+		"kylechui/nvim-surround",
+		version = "*", -- Use for stability; omit to use `main` branch for the latest features
+		event = "VeryLazy",
+		config = function()
+			require("nvim-surround").setup({
+				-- Configuration here, or leave empty to use defaults
+			})
 		end,
 	},
 	{ -- Highlight, edit, and navigate code
