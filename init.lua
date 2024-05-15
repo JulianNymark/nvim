@@ -290,6 +290,7 @@ require("lazy").setup({
 				-- },
 				pickers = {
 					lsp_references = { fname_width = 100 },
+					lsp_definitions = { fname_width = 100 },
 				},
 				extensions = {
 					["ui-select"] = {
