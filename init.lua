@@ -501,6 +501,14 @@ require("lazy").setup({
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
 			capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
+			local organize_imports = function()
+				local params = {
+					command = "_typescript.organizeImports",
+					arguments = { vim.api.nvim_buf_get_name(0) },
+					title = "",
+				}
+				vim.lsp.buf.execute_command(params)
+			end
 			-- Enable the following language servers
 			--  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
 			--
@@ -521,7 +529,16 @@ require("lazy").setup({
 				--    https://github.com/pmizio/typescript-tools.nvim
 				--
 				-- But for many setups, the LSP (`tsserver`) will work just fine
-				tsserver = {},
+				tsserver = {
+					on_attach = nil,
+					capabilities = capabilities,
+					commands = {
+						OrganizeImports = {
+							organize_imports,
+							description = "Organize Imports",
+						},
+					},
+				},
 				cssls = {},
 				lua_ls = {
 					-- cmd = {...},
