@@ -48,6 +48,8 @@ vim.opt.scrolloff = 10
 
 vim.opt.hlsearch = true
 
+vim.opt.tabstop = 2
+
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
 --  See `:help vim.highlight.on_yank()`
@@ -628,11 +630,12 @@ require("lazy").setup({
 				--
 				-- You can use a sub-list to tell conform to run *until* a formatter
 				-- is found.
-				javascript = { "prettierd", "prettier" },
-				javascriptreact = { "prettierd", "prettier" },
-				typescript = { "prettierd", "prettier" },
-				typescriptreact = { "prettierd", "prettier" },
-				css = { "prettierd", "prettier" },
+				javascript = { "biome", "prettierd", "prettier" },
+				javascriptreact = { "biome", "prettierd", "prettier" },
+				typescript = { "biome", "prettierd", "prettier" },
+				typescriptreact = { "biome", "prettierd", "prettier" },
+				css = { "biome", "prettierd", "prettier" },
+				json = { "jq" },
 			},
 		},
 	},
