@@ -539,7 +539,15 @@ require("lazy").setup({
 						},
 					},
 				},
-				cssls = {},
+				cssls = {
+					settings = {
+						css = {
+							lint = {
+								unknownAtRules = "ignore",
+							},
+						},
+					},
+				},
 				lua_ls = {
 					-- cmd = {...},
 					-- filetypes = { ...},
@@ -554,6 +562,7 @@ require("lazy").setup({
 						},
 					},
 				},
+				tailwindcss = {},
 			}
 
 			-- Ensure the servers and tools above are installed
