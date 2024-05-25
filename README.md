@@ -13,4 +13,4 @@
 | command | what?! |
 | --- | --- |
 | :e | (edit) reload buffer from disk |
-| :noa w | noautocomand w (save without formatting) |
+| :noa w | noautocommand w (save without formatting) |
