@@ -2,7 +2,7 @@
 
 ## keymaps
 
-| mode | key | what?! |
+| mode | keys | what?! |
 | --- | --- | ------ |
 | n | <kbd>viwp</kbd> | replace word with pasteboard (register 0) |
 | n | <kbd>vep</kbd> | replace word with pasteboard, from curr to end (register 0) |
