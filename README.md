@@ -8,6 +8,7 @@
 | n | <kbd>vep</kbd> | replace word with pasteboard, from curr to end (register 0) |
 | i | <kbd>\<C-r\>0</kbd> | paste from registry 0 |
 | n | <kbd>cst</kbd> | change surrounding tag (rename both open/close tags) |
+| n | <kbd>ysiWt</kbd> <kbd>span class="highlight"</kbd> | surround Word with new tag (with attributes) |
 
 ## commands
 
