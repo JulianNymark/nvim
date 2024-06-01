@@ -18,3 +18,7 @@
 | --- | --- |
 | :e | (edit) reload buffer from disk |
 | :noa w | noautocommand w (save without formatting) |
+
+## behaviours
+
+- for `telescope-file-browser`, to create a directory instead of a file, include a trailing slash: `somefile/`
