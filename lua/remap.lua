@@ -39,8 +39,8 @@ vim.keymap.set(
 
 vim.keymap.set("n", ",", "@@")
 
-local lc1 = "tab:  ,trail: ,nbsp: ,eol: "
-local lc2 = "tab:» ,trail:·,space:·,nbsp:␣,eol:$"
+local lc1 = "tab:» ,trail:·,space:·,nbsp:␣,eol:$"
+local lc2 = "tab:  ,trail: ,nbsp: ,eol: "
 function ChgListchars()
 	if vim.o.listchars == lc1 then
 		vim.opt.listchars = lc2
