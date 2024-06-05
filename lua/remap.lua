@@ -36,3 +36,16 @@ vim.keymap.set(
 	":let @+ = expand('%') . ':' . line('.')<cr>",
 	{ desc = "Copy file:[L]ine_number to clipboard" }
 )
+
+vim.keymap.set("n", ",", "@@")
+
+local lc1 = "tab:  ,trail: ,nbsp: ,eol: "
+local lc2 = "tab:» ,trail:·,space:·,nbsp:␣,eol:$"
+function ChgListchars()
+	if vim.o.listchars == lc1 then
+		vim.opt.listchars = lc2
+	else
+		vim.opt.listchars = lc1
+	end
+end
+vim.keymap.set("n", "<Leader>_", ChgListchars, { desc = "Toggle Whitespace (_) rendering" })
