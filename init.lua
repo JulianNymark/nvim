@@ -117,8 +117,6 @@ require("lazy").setup({
 			local gitsigns = require("gitsigns")
 			gitsigns.setup(vim.tbl_deep_extend("force", {
 				on_attach = function(bufnr)
-					local gitsigns = require("gitsigns")
-
 					local function map(mode, l, r, opts)
 						opts = opts or {}
 						opts.buffer = bufnr
@@ -351,7 +349,7 @@ require("lazy").setup({
 		end,
 	},
 
-	{ -- LSP Configuration & Plugins
+	{ -- LSP Configuration & Plugins (nvim-lspconfig)
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			-- Automatically install LSPs and related tools to stdpath for Neovim
@@ -400,11 +398,6 @@ require("lazy").setup({
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
 				callback = function(event)
-					-- NOTE: Remember that Lua is a real programming language, and as such it is possible
-					-- to define small helper and utility functions so you don't have to repeat yourself.
-					--
-					-- In this case, we create a function that lets us more easily define mappings specific
-					-- for LSP related items. It sets the mode, buffer and description for us each time.
 					local map = function(keys, func, desc)
 						vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 					end
@@ -565,6 +558,15 @@ require("lazy").setup({
 					},
 				},
 				tailwindcss = {},
+				biome = {
+					-- root_dir = function(fname)
+					-- 	local util = require("lspconfig.util")
+					-- 	return util.root_pattern("biome.json", "biome.jsonc")(fname)
+					-- 		or util.find_package_json_ancestor(fname)
+					-- 		or util.find_node_modules_ancestor(fname)
+					-- 		or util.find_git_ancestor(fname)
+					-- end,
+				},
 			}
 
 			-- Ensure the servers and tools above are installed
@@ -597,8 +599,7 @@ require("lazy").setup({
 			})
 		end,
 	},
-
-	{ -- Autoformat
+	{ -- Autoformat (conform.nvim)
 		"stevearc/conform.nvim",
 		lazy = false,
 		keys = {
@@ -630,16 +631,20 @@ require("lazy").setup({
 				--
 				-- You can use a sub-list to tell conform to run *until* a formatter
 				-- is found.
-				javascript = { "biome", "prettierd", "prettier" },
-				javascriptreact = { "biome", "prettierd", "prettier" },
-				typescript = { "biome", "prettierd", "prettier" },
-				typescriptreact = { "biome", "prettierd", "prettier" },
-				css = { "biome", "prettierd", "prettier" },
+				-- javascript = { { "prettierd", "prettier" } },
+				-- javascriptreact = { { "prettierd", "prettier" } },
+				-- typescript = { { "prettierd", "prettier" } },
+				-- typescriptreact = { { "prettierd", "prettier" } },
+				-- css = { { "prettierd", "prettier" } },
+				javascript = { "biome", "biome-check" },
+				javascriptreact = { "biome", "biome-check" },
+				typescript = { "biome", "biome-check" },
+				typescriptreact = { "biome", "biome-check" },
+				css = { "biome", "biome-check" },
 				json = { "jq" },
 			},
 		},
 	},
-
 	{ -- Autocompletion
 		"hrsh7th/nvim-cmp",
 		event = "InsertEnter",
