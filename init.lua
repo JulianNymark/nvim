@@ -282,6 +282,16 @@ require("lazy").setup({
 						},
 					},
 					sorting_strategy = "ascending",
+					vimgrep_arguments = {
+						"rg",
+						"--color=never",
+						"--no-heading",
+						"--with-filename",
+						"--line-number",
+						"--column",
+						"--smart-case",
+						"--hidden",
+					},
 				},
 				-- defaults = {
 				--   mappings = {
