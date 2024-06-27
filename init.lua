@@ -568,15 +568,17 @@ require("lazy").setup({
 					},
 				},
 				tailwindcss = {},
-				biome = {
-					-- root_dir = function(fname)
-					-- 	local util = require("lspconfig.util")
-					-- 	return util.root_pattern("biome.json", "biome.jsonc")(fname)
-					-- 		or util.find_package_json_ancestor(fname)
-					-- 		or util.find_node_modules_ancestor(fname)
-					-- 		or util.find_git_ancestor(fname)
-					-- end,
-				},
+				-- biome = {
+				-- 	 root_dir = function(fname)
+				-- 		local util = require("lspconfig.util")
+				-- 	 	return util.root_pattern("biome.json", "biome.jsonc")(fname)
+				-- 	 		or util.find_package_json_ancestor(fname)
+				-- 	 		or util.find_node_modules_ancestor(fname)
+				-- 	 		or util.find_git_ancestor(fname)
+				-- 	 end,
+				-- },
+				eslint = {},
+				prettier = {},
 			}
 
 			-- Ensure the servers and tools above are installed
@@ -641,17 +643,17 @@ require("lazy").setup({
 				--
 				-- You can use a sub-list to tell conform to run *until* a formatter
 				-- is found.
-				-- javascript = { { "prettierd", "prettier" } },
-				-- javascriptreact = { { "prettierd", "prettier" } },
-				-- typescript = { { "prettierd", "prettier" } },
-				-- typescriptreact = { { "prettierd", "prettier" } },
-				-- css = { { "prettierd", "prettier" } },
-				javascript = { "biome", "biome-check" },
-				javascriptreact = { "biome", "biome-check" },
-				typescript = { "biome", "biome-check" },
-				typescriptreact = { "biome", "biome-check" },
-				css = { "biome", "biome-check" },
-				json = { "jq" },
+				javascript = { { "prettierd", "prettier" } },
+				javascriptreact = { { "prettierd", "prettier" } },
+				typescript = { { "prettierd", "prettier" } },
+				typescriptreact = { { "prettierd", "prettier" } },
+				css = { { "prettierd", "prettier" } },
+				-- javascript = { "biome", "biome-check" },
+				-- javascriptreact = { "biome", "biome-check" },
+				-- typescript = { "biome", "biome-check" },
+				-- typescriptreact = { "biome", "biome-check" },
+				-- css = { "biome", "biome-check" },
+				-- json = { "jq" },
 			},
 		},
 	},
