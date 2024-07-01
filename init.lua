@@ -514,6 +514,8 @@ require("lazy").setup({
 				}
 				vim.lsp.buf.execute_command(params)
 			end
+
+			local nvim_lsp = require("lspconfig")
 			-- Enable the following language servers
 			--  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
 			--
@@ -543,6 +545,11 @@ require("lazy").setup({
 							description = "Organize Imports",
 						},
 					},
+					root_dir = nvim_lsp.util.root_pattern("package.json"),
+					single_file_support = false,
+				},
+				denols = {
+					root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc"),
 				},
 				cssls = {
 					settings = {
