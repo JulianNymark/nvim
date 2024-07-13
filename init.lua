@@ -568,8 +568,8 @@ require("lazy").setup({
 				tailwindcss = {},
 				eslint = {},
 				-- eslint_d = {},
-				-- prettierd = {},
-				prettier = {},
+				prettierd = {},
+				-- prettier = {},
 				-- biome = {
 				-- 	 root_dir = function(fname)
 				-- 		local util = require("lspconfig.util")
@@ -644,17 +644,17 @@ require("lazy").setup({
 				--
 				-- You can use a sub-list to tell conform to run *until* a formatter
 				-- is found.
-				javascript = { { "prettier", "eslint" } },
-				javascriptreact = { { "prettier", "eslint" } },
-				typescript = { { "prettier", "eslint" } },
-				typescriptreact = { { "prettier", "eslint" } },
+				javascript = { { "prettierd", "eslint" } },
+				javascriptreact = { { "prettierd", "eslint" } },
+				typescript = { { "prettierd", "eslint" } },
+				typescriptreact = { { "prettierd", "eslint" } },
 
-				css = { { "prettier", "eslint" } },
-				scss = { { "prettier", "eslint" } },
-				json = { { "prettier", "eslint" } },
-				svelte = { { "prettier", "eslint" } },
-				graphql = { { "prettier", "eslint" } },
-				markdown = { { "prettier", "eslint" } },
+				css = { { "prettierd", "eslint" } },
+				scss = { { "prettierd", "eslint" } },
+				json = { { "prettierd", "eslint" } },
+				svelte = { { "prettierd", "eslint" } },
+				graphql = { { "prettierd", "eslint" } },
+				markdown = { { "prettierd", "eslint" } },
 				-- javascript = { "biome", "biome-check" },
 				-- javascriptreact = { "biome", "biome-check" },
 				-- typescript = { "biome", "biome-check" },
