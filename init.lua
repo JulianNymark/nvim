@@ -516,9 +516,6 @@ require("lazy").setup({
 			end
 
 			local nvim_lsp = require("lspconfig")
-			-- Enable the following language servers
-			--  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
-			--
 			--  Add any additional override configuration in the following tables. Available keys are:
 			--  - cmd (table): Override the default command used to start the server
 			--  - filetypes (table): Override the default list of associated filetypes for the server
@@ -527,15 +524,12 @@ require("lazy").setup({
 			--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 			local servers = {
 				clangd = {},
-				-- gopls = {},
-				-- pyright = {},
-				-- rust_analyzer = {},
+				pyright = {},
+				rust_analyzer = {},
 				-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
 				--
 				-- Some languages (like typescript) have entire language plugins that can be useful:
 				--    https://github.com/pmizio/typescript-tools.nvim
-				--
-				-- But for many setups, the LSP (`tsserver`) will work just fine
 				tsserver = {
 					on_attach = nil,
 					capabilities = capabilities,
@@ -561,9 +555,6 @@ require("lazy").setup({
 					},
 				},
 				lua_ls = {
-					-- cmd = {...},
-					-- filetypes = { ...},
-					-- capabilities = {},
 					settings = {
 						Lua = {
 							completion = {
@@ -575,6 +566,10 @@ require("lazy").setup({
 					},
 				},
 				tailwindcss = {},
+				eslint = {},
+				-- eslint_d = {},
+				-- prettierd = {},
+				prettier = {},
 				-- biome = {
 				-- 	 root_dir = function(fname)
 				-- 		local util = require("lspconfig.util")
@@ -584,8 +579,6 @@ require("lazy").setup({
 				-- 	 		or util.find_git_ancestor(fname)
 				-- 	 end,
 				-- },
-				eslint = {},
-				prettier = {},
 			}
 
 			-- Ensure the servers and tools above are installed
@@ -621,6 +614,7 @@ require("lazy").setup({
 	{ -- Autoformat (conform.nvim)
 		"stevearc/conform.nvim",
 		lazy = false,
+		event = { "BufReadPre", "BufNewFile" },
 		keys = {
 			{
 				"<leader>f",
@@ -650,11 +644,17 @@ require("lazy").setup({
 				--
 				-- You can use a sub-list to tell conform to run *until* a formatter
 				-- is found.
-				javascript = { { "prettierd", "prettier" } },
-				javascriptreact = { { "prettierd", "prettier" } },
-				typescript = { { "prettierd", "prettier" } },
-				typescriptreact = { { "prettierd", "prettier" } },
-				css = { { "prettierd", "prettier" } },
+				javascript = { { "prettier", "eslint" } },
+				javascriptreact = { { "prettier", "eslint" } },
+				typescript = { { "prettier", "eslint" } },
+				typescriptreact = { { "prettier", "eslint" } },
+
+				css = { { "prettier", "eslint" } },
+				scss = { { "prettier", "eslint" } },
+				json = { { "prettier", "eslint" } },
+				svelte = { { "prettier", "eslint" } },
+				graphql = { { "prettier", "eslint" } },
+				markdown = { { "prettier", "eslint" } },
 				-- javascript = { "biome", "biome-check" },
 				-- javascriptreact = { "biome", "biome-check" },
 				-- typescript = { "biome", "biome-check" },
@@ -681,15 +681,12 @@ require("lazy").setup({
 					return "make install_jsregexp"
 				end)(),
 				dependencies = {
-					-- `friendly-snippets` contains a variety of premade snippets.
-					--    See the README about individual language/framework/plugin snippets:
-					--    https://github.com/rafamadriz/friendly-snippets
-					-- {
-					--   'rafamadriz/friendly-snippets',
-					--   config = function()
-					--     require('luasnip.loaders.from_vscode').lazy_load()
-					--   end,
-					-- },
+					{
+						"rafamadriz/friendly-snippets",
+						config = function()
+							require("luasnip.loaders.from_vscode").lazy_load()
+						end,
+					},
 				},
 			},
 			"saadparwaiz1/cmp_luasnip",
@@ -987,57 +984,87 @@ require("lazy").setup({
 		},
 		config = function() -- This is the function that runs, AFTER loading
 			local vgit = require("vgit")
-			vgit.setup({
-				keymaps = {
-					["n <C-k>"] = function()
-						vgit.hunk_up()
-					end,
-					["n <C-j>"] = function()
-						vgit.hunk_down()
-					end,
-					["n <leader>gs"] = function()
-						vgit.buffer_hunk_stage()
-					end,
-					["n <leader>gr"] = function()
-						vgit.buffer_hunk_reset()
-					end,
-					["n <leader>gp"] = function()
-						vgit.buffer_hunk_preview()
-					end,
-					["n <leader>gb"] = function()
-						vgit.buffer_blame_preview()
-					end,
-					["n <leader>gf"] = function()
-						vgit.buffer_diff_preview()
-					end,
-					["n <leader>gh"] = function()
-						vgit.buffer_history_preview()
-					end,
-					["n <leader>gu"] = function()
-						vgit.buffer_reset()
-					end,
-					["n <leader>gg"] = function()
-						vgit.buffer_gutter_blame_preview()
-					end,
-					["n <leader>glu"] = function()
-						vgit.buffer_hunks_preview()
-					end,
-					["n <leader>gls"] = function()
-						vgit.project_hunks_staged_preview()
-					end,
-					["n <leader>gd"] = function()
-						vgit.project_diff_preview()
-					end,
-					["n <leader>gq"] = function()
-						vgit.project_hunks_qf()
-					end,
-					["n <leader>gx"] = function()
-						vgit.toggle_diff_preference()
-					end,
-				},
-			})
+			vgit.setup({})
+			vim.keymap.set("n", "<C-k>", vgit.hunk_up, { desc = "hunk up" })
+			vim.keymap.set("n", "<C-j>", vgit.hunk_down, { desc = "hunk down" })
+			vim.keymap.set("n", "<leader>gs", vgit.buffer_hunk_stage, { desc = "[g]it buffer hunk [s]tage" })
+			vim.keymap.set("n", "<leader>gr", vgit.buffer_hunk_reset, { desc = "[g]it buffer hunk [r]eset" })
+			vim.keymap.set("n", "<leader>gp", vgit.buffer_hunk_preview, { desc = "[g]it buffer hunk [p]review" })
+			vim.keymap.set("n", "<leader>gb", vgit.buffer_blame_preview, { desc = "[g]it buffer [b]lame preview" })
+			vim.keymap.set("n", "<leader>gf", vgit.buffer_diff_preview, { desc = "[g]it buffer di[f]f preview" })
+			vim.keymap.set(
+				"n",
+				"<leader>gh",
+				vgit.buffer_history_preview,
+				{ desc = "[g]it buffer hunk [h]istory preview" }
+			)
+			vim.keymap.set("n", "<leader>gu", vgit.buffer_reset, { desc = "[g]it buffer [u]ndo all" })
+			vim.keymap.set(
+				"n",
+				"<leader>gg",
+				vgit.buffer_gutter_blame_preview,
+				{ desc = "[g]it [g]utter buffer blame preview" }
+			)
+			vim.keymap.set("n", "<leader>glu", vgit.project_hunks_preview, { desc = "[g]it [l]ist [u]nstaged" })
+			vim.keymap.set("n", "<leader>gls", vgit.project_hunks_staged_preview, { desc = "[g]it [l]ist [s]taged" })
+			vim.keymap.set("n", "<leader>gd", vgit.project_diff_preview, { desc = "[g]it [d]iff" })
+			vim.keymap.set("n", "<leader>gq", vgit.project_hunks_qf, { desc = "[g]it [q]uickfix hunks" })
+			vim.keymap.set(
+				"n",
+				"<leader>gx",
+				vgit.toggle_diff_preference,
+				{ desc = "[g]it toggle betwi[x]t diff pref" }
+			)
 		end,
 	},
+	{
+		"Wansmer/sibling-swap.nvim",
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		opts = {
+			use_default_keymaps = false,
+			keymaps = {
+				["<space>."] = "swap_with_right_with_opp",
+				["<space>,"] = "swap_with_left_with_opp",
+			},
+		},
+		config = function(_, opts)
+			local swap = require("sibling-swap")
+			swap.setup(opts)
+			vim.keymap.set("n", "<leader>.", swap.swap_with_right_with_opp, { desc = "swap with right sibling" })
+			vim.keymap.set("n", "<leader>,", swap.swap_with_left_with_opp, { desc = "swap with left sibling" })
+		end,
+	},
+	-- {
+	-- 	"mfussenegger/nvim-lint",
+	-- 	event = {
+	-- 		"BufReadPre",
+	-- 		"BufNewFile",
+	-- 	},
+	-- 	config = function()
+	-- 		local lint = require("lint")
+	--
+	-- 		lint.linters_by_ft = {
+	-- 			javascript = { "eslint_d" },
+	-- 			typescript = { "eslint_d" },
+	-- 			javascriptreact = { "eslint_d" },
+	-- 			typescriptreact = { "eslint_d" },
+	-- 			svelte = { "eslint_d" },
+	-- 		}
+	--
+	-- 		local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
+	--
+	-- 		vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+	-- 			group = lint_augroup,
+	-- 			callback = function()
+	-- 				lint.try_lint()
+	-- 			end,
+	-- 		})
+	--
+	-- 		-- vim.keymap.set("n", "<leader>ll", function()
+	-- 		-- 	lint.try_lint()
+	-- 		-- end, { desc = "Trigger linting for current file" })
+	-- 	end,
+	-- },
 }, {
 	ui = {
 		-- If you are using a Nerd Font: set icons to an empty table which will use the
