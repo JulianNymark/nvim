@@ -316,19 +316,19 @@ require("lazy").setup({
 			-- See `:help telescope.builtin`
 			local builtin = require("telescope.builtin")
 
-			vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
-			vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
-			vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "[S]earch [F]iles" })
-			vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "[S]earch [S]elect Telescope" })
-			vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
-			vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "[S]earch by [G]rep" })
+			vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[s]earch [H]elp" })
+			vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[s]earch [K]eymaps" })
+			vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "[s]earch [F]iles" })
+			vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "[s]earch [s]elect Telescope" })
+			vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "[s]earch current [W]ord" })
+			vim.keymap.set("n", "<leader>s<leader>", builtin.live_grep, { desc = "[s]earch by grep" })
 			vim.keymap.set("n", "<leader>sc", function()
 				local cwd = vim.fn.expand("%:p:h")
-				builtin.live_grep({ search_dirs = { cwd } })
-			end, { desc = "[S]earch [c]urrent dir by grep" })
-			vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
-			vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
-			vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
+				builtin.live_grep({ search_dirs = { cwd }, prompt_title = "[s]earch [c]urrent dir (grep)" })
+			end, { desc = "[s]earch [c]urrent dir by grep" })
+			vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[s]earch [D]iagnostics" })
+			vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[s]earch [R]esume" })
+			vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[s]earch Recent Files ("." for repeat)' })
 			vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
 
 			vim.keymap.set("n", "<leader>b<leader>", function()
@@ -337,7 +337,7 @@ require("lazy").setup({
 			vim.keymap.set("n", "<C-p>", builtin.git_files, { desc = "project files (git)" })
 			vim.keymap.set("n", "<leader>sp", function()
 				builtin.grep_string({ search = vim.fn.input("Grep > ") })
-			end, { desc = "[S]earch gre[p] string" })
+			end, { desc = "[s]earch gre[p] string" })
 
 			-- Slightly advanced example of overriding default behavior and theme
 			vim.keymap.set("n", "<leader>/", function()
@@ -355,12 +355,12 @@ require("lazy").setup({
 					grep_open_files = true,
 					prompt_title = "Live Grep in Open Files",
 				})
-			end, { desc = "[S]earch [/] in Open Files" })
+			end, { desc = "[s]earch [/] in Open Files" })
 
 			-- Shortcut for searching your Neovim configuration files
 			vim.keymap.set("n", "<leader>sn", function()
 				builtin.find_files({ cwd = vim.fn.stdpath("config") })
-			end, { desc = "[S]earch [N]eovim files" })
+			end, { desc = "[s]earch [N]eovim files" })
 		end,
 	},
 
@@ -436,14 +436,14 @@ require("lazy").setup({
 
 					-- Fuzzy find all the symbols in your current document.
 					--  Symbols are things like variables, functions, types, etc.
-					map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
+					map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [s]ymbols")
 
 					-- Fuzzy find all the symbols in your current workspace.
 					--  Similar to document symbols, except searches over your entire project.
 					map(
 						"<leader>ws",
 						require("telescope.builtin").lsp_dynamic_workspace_symbols,
-						"[W]orkspace [S]ymbols"
+						"[W]orkspace [s]ymbols"
 					)
 
 					-- Rename the variable under your cursor.
