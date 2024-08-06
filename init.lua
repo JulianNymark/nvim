@@ -940,6 +940,10 @@ require("lazy").setup({
 			vim.keymap.set("n", "<Leader>sc", function()
 				fb.file_browser({
 					cwd = vim.fn.expand("%:p:h"),
+					hidden = {
+						file_browser = true,
+						folder_browser = true,
+					},
 				})
 			end, { desc = "[S]earch [C]urrent directory (browse)" })
 		end,
