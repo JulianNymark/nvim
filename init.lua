@@ -914,16 +914,19 @@ require("lazy").setup({
 
 			vim.keymap.set("n", "<C-h>", function()
 				harpoon:list():select(1)
-			end, { desc = "[h] tns = harpoon [1] 234" })
+			end, { desc = "[h] tns- = harpoon [1] 2345" })
 			vim.keymap.set("n", "<C-t>", function()
 				harpoon:list():select(2)
-			end, { desc = "h [t] ns = harpoon 1 [2] 34" })
+			end, { desc = "h [t] ns- = harpoon 1 [2] 345" })
 			vim.keymap.set("n", "<C-n>", function()
 				harpoon:list():select(3)
-			end, { desc = "ht [n] s = harpoon 12 [3] 4" })
+			end, { desc = "ht [n] s- = harpoon 12 [3] 45" })
 			vim.keymap.set("n", "<C-s>", function()
 				harpoon:list():select(4)
-			end, { desc = "htn [s] = harpoon 123 [4]" })
+			end, { desc = "htn [s] - = harpoon 123 [4] 5" })
+			vim.keymap.set("n", "<C-_>", function()
+				harpoon:list():select(5)
+			end, { desc = "htns [-] = harpoon 1234 [5]" })
 
 			-- Toggle previous & next buffers stored within Harpoon list
 			vim.keymap.set("n", "<C-S-P>", function()
