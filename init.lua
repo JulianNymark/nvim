@@ -266,6 +266,7 @@ require("lazy").setup({
 
 			-- [[ Configure Telescope ]]
 			-- See `:help telescope` and `:help telescope.setup()`
+			local layout = require("telescope.actions.layout")
 			require("telescope").setup({
 				-- You can put your default mappings / updates / etc. in here
 				--  All the info you're looking for is in `:help telescope.setup()`
@@ -292,12 +293,19 @@ require("lazy").setup({
 						"--smart-case",
 						"--hidden",
 					},
+					mappings = {
+						n = {
+							["<C-h>"] = layout.toggle_preview,
+						},
+						i = {
+							["<C-h>"] = layout.toggle_preview,
+						},
+					},
+					--   mappings = {
+					--     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
+					--   },
 				},
-				-- defaults = {
-				--   mappings = {
-				--     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-				--   },
-				-- },
+
 				pickers = {
 					lsp_references = { fname_width = 100 },
 					lsp_definitions = { fname_width = 100 },
@@ -325,6 +333,13 @@ require("lazy").setup({
 			vim.keymap.set("n", "<leader>sc", function()
 				local cwd = vim.fn.expand("%:p:h")
 				builtin.live_grep({ search_dirs = { cwd }, prompt_title = "[s]earch [c]urrent dir (grep)" })
+			end, { desc = "[s]earch [c]urrent dir by grep" })
+			vim.keymap.set("n", "<leader>si", function()
+				builtin.live_grep({
+					previewer = false,
+					prompt_title = "[s]earch by grep (disabled ignores)",
+					additional_args = { "--no-ignore-vcs" },
+				})
 			end, { desc = "[s]earch [c]urrent dir by grep" })
 			vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[s]earch [D]iagnostics" })
 			vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[s]earch [R]esume" })
