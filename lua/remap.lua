@@ -53,3 +53,4 @@ function ChgListchars()
 	end
 end
 vim.keymap.set("n", "<Leader>_", ChgListchars, { desc = "Toggle Whitespace (_) rendering" })
+vim.keymap.set("n", "<Leader>fs", ":w<CR>", { desc = "[s]ave" })

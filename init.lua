@@ -198,13 +198,17 @@ require("lazy").setup({
 
 			-- Document existing key chains
 			require("which-key").register({
-				["<leader>c"] = { name = "[C]ode", _ = "which_key_ignore" },
-				["<leader>d"] = { name = "[D]ocument", _ = "which_key_ignore" },
-				["<leader>r"] = { name = "[R]ename", _ = "which_key_ignore" },
-				["<leader>s"] = { name = "[S]earch", _ = "which_key_ignore" },
-				["<leader>w"] = { name = "[W]orkspace", _ = "which_key_ignore" },
-				["<leader>t"] = { name = "[T]oggle", _ = "which_key_ignore" },
-				["<leader>h"] = { name = "Git [H]unk", _ = "which_key_ignore" },
+				["<leader>b"] = { name = "[b]rowse", _ = "which_key_ignore" },
+				["<leader>c"] = { name = "[c]ode", _ = "which_key_ignore" },
+				["<leader>d"] = { name = "[d]ocument", _ = "which_key_ignore" },
+				["<leader>f"] = { name = "[f]ile", _ = "which_key_ignore" },
+				["<leader>g"] = { name = "[g]it", _ = "which_key_ignore" },
+				["<leader>gl"] = { name = "[l]ist", _ = "which_key_ignore" },
+				["<leader>h"] = { name = "Git [h]unk", _ = "which_key_ignore" },
+				["<leader>r"] = { name = "[r]efactor", _ = "which_key_ignore" },
+				["<leader>s"] = { name = "[s]earch", _ = "which_key_ignore" },
+				["<leader>t"] = { name = "[t]oggle", _ = "which_key_ignore" },
+				["<leader>w"] = { name = "[w]orkspace", _ = "which_key_ignore" },
 			})
 			-- visual mode
 			require("which-key").register({
@@ -463,11 +467,11 @@ require("lazy").setup({
 
 					-- Rename the variable under your cursor.
 					--  Most Language Servers support renaming across files, etc.
-					map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+					map("<leader>rn", vim.lsp.buf.rename, "re[n]ame")
 
 					-- Execute a code action, usually your cursor needs to be on top of an error
 					-- or a suggestion from your LSP for this to activate.
-					map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+					map("<leader>ca", vim.lsp.buf.code_action, "[a]ction")
 
 					-- Opens a popup that displays documentation about the word under your cursor
 					--  See `:help K` for why this keymap.
@@ -637,12 +641,12 @@ require("lazy").setup({
 		event = { "BufReadPre", "BufNewFile" },
 		keys = {
 			{
-				"<leader>f",
+				"<leader>ff",
 				function()
 					require("conform").format({ async = true, lsp_fallback = true })
 				end,
 				mode = "",
-				desc = "[F]ormat buffer",
+				desc = "[f]ormat",
 			},
 		},
 		opts = {
@@ -980,7 +984,7 @@ require("lazy").setup({
 		dependencies = "nvim-lua/plenary.nvim",
 		config = true,
 		keys = { -- load the plugin only when using it's keybinding:
-			{ "<leader>u", "<cmd>lua require('undotree').toggle()<cr>", desc = "[U]ndotree" },
+			{ "<leader>u", "<cmd>lua require('undotree').toggle()<cr>", desc = "[u]ndotree" },
 		},
 	},
 	{
@@ -1014,34 +1018,24 @@ require("lazy").setup({
 			vgit.setup({})
 			vim.keymap.set("n", "<C-k>", vgit.hunk_up, { desc = "hunk up" })
 			vim.keymap.set("n", "<C-j>", vgit.hunk_down, { desc = "hunk down" })
-			vim.keymap.set("n", "<leader>gs", vgit.buffer_hunk_stage, { desc = "[g]it buffer hunk [s]tage" })
-			vim.keymap.set("n", "<leader>gr", vgit.buffer_hunk_reset, { desc = "[g]it buffer hunk [r]eset" })
-			vim.keymap.set("n", "<leader>gp", vgit.buffer_hunk_preview, { desc = "[g]it buffer hunk [p]review" })
-			vim.keymap.set("n", "<leader>gb", vgit.buffer_blame_preview, { desc = "[g]it buffer [b]lame preview" })
-			vim.keymap.set("n", "<leader>gf", vgit.buffer_diff_preview, { desc = "[g]it buffer di[f]f preview" })
-			vim.keymap.set(
-				"n",
-				"<leader>gh",
-				vgit.buffer_history_preview,
-				{ desc = "[g]it buffer hunk [h]istory preview" }
-			)
-			vim.keymap.set("n", "<leader>gu", vgit.buffer_reset, { desc = "[g]it buffer [u]ndo all" })
+			vim.keymap.set("n", "<leader>gs", vgit.buffer_hunk_stage, { desc = "buffer hunk [s]tage" })
+			vim.keymap.set("n", "<leader>gr", vgit.buffer_hunk_reset, { desc = "buffer hunk [r]eset" })
+			vim.keymap.set("n", "<leader>gp", vgit.buffer_hunk_preview, { desc = "buffer hunk [p]review" })
+			vim.keymap.set("n", "<leader>gb", vgit.buffer_blame_preview, { desc = "buffer [b]lame preview" })
+			vim.keymap.set("n", "<leader>gf", vgit.buffer_diff_preview, { desc = "buffer di[f]f preview" })
+			vim.keymap.set("n", "<leader>gh", vgit.buffer_history_preview, { desc = "buffer hunk [h]istory preview" })
+			vim.keymap.set("n", "<leader>gu", vgit.buffer_reset, { desc = "buffer [u]ndo all" })
 			vim.keymap.set(
 				"n",
 				"<leader>gg",
 				vgit.buffer_gutter_blame_preview,
-				{ desc = "[g]it [g]utter buffer blame preview" }
+				{ desc = "[g]utter buffer blame preview" }
 			)
-			vim.keymap.set("n", "<leader>glu", vgit.project_hunks_preview, { desc = "[g]it [l]ist [u]nstaged" })
-			vim.keymap.set("n", "<leader>gls", vgit.project_hunks_staged_preview, { desc = "[g]it [l]ist [s]taged" })
-			vim.keymap.set("n", "<leader>gd", vgit.project_diff_preview, { desc = "[g]it [d]iff" })
-			vim.keymap.set("n", "<leader>gq", vgit.project_hunks_qf, { desc = "[g]it [q]uickfix hunks" })
-			vim.keymap.set(
-				"n",
-				"<leader>gx",
-				vgit.toggle_diff_preference,
-				{ desc = "[g]it toggle betwi[x]t diff pref" }
-			)
+			vim.keymap.set("n", "<leader>glu", vgit.project_hunks_preview, { desc = "[u]nstaged" })
+			vim.keymap.set("n", "<leader>gls", vgit.project_hunks_staged_preview, { desc = "[l]ist [s]taged" })
+			vim.keymap.set("n", "<leader>gd", vgit.project_diff_preview, { desc = "[d]iff" })
+			vim.keymap.set("n", "<leader>gq", vgit.project_hunks_qf, { desc = "[q]uickfix hunks" })
+			vim.keymap.set("n", "<leader>gx", vgit.toggle_diff_preference, { desc = "toggle betwi[x]t diff pref" })
 		end,
 	},
 	{
